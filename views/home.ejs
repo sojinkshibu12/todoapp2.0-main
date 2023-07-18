@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+    <div class="headbar">
+        <div class="headdiv1"><h1>To-do</h1></div>
+    </div>
+    <div class = item-holder>
+        <h1 class="heading">Today</h1>
+        <div class="items">
+            <% itemlist.forEach(function(item){ %>
+                <form action="/delete" method="post">
+                    <div class="p-container"><p><%=item.name%></p><button class = "button"   type="submit" name = "button" value="<%=item._id%>">Delete</button></div>
+                </form>
+            <%});%>
+        </div>
+
+
+    </div>
+    <div class="input-holder">
+        <form action="/home" method="post">
+            <input  class = "captcha"type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button class = "submitbutton"type="submit" name="list">Add</button>
+        </form>
+    </div>
+<%- include('partials/footer') %>
