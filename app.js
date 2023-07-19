@@ -9,7 +9,7 @@ const passportlocalmongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 
-
+const PORT = process.env.PORT||3000
 
 
 const app = express();
@@ -25,7 +25,7 @@ app.set("view engine","ejs");
 app.use(body_parser.urlencoded({extended:true}));
 
 
-mongoose.connect("mongodb://0.0.0.0:27017/userdb");
+mongoose.connect(process.env.MONGODB_URL);
 
 
 const userschema = new mongoose.Schema({
@@ -165,11 +165,11 @@ app.post("/login",function(req,res){
     }
   });
 });
-app.listen(3000,function(err){
+app.listen(PORT,function(err){
   if(err){
     console.log(err);
   }
   else{
-    console.log("running");
+    console.log('running ');
   }
 })
